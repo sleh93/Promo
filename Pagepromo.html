@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Passengers x Welcome Pick-up</title>
+
+    <!-- CDN Tailwind CSS - pour le style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Police Inter - pour une typographie moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Styles personnalisés pour la présentation */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0; /* Supprime la marge par défaut du corps */
+            padding: 0; /* Supprime le rembourrage par défaut du corps */
+            overflow-x: hidden; /* Empêche le défilement horizontal indésirable */
+        }
+        .section {
+            padding: 4rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0; /* Initialement caché pour l'animation */
+            transform: translateY(20px); /* Légèrement décalé vers le bas pour l'animation */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transition fluide */
+        }
+        .section.is-visible {
+            opacity: 1; /* Entièrement visible */
+            transform: translateY(0); /* Revient à sa position d'origine */
+        }
+        .icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Ombre subtile */
+            transition: transform 0.3s ease; /* Effet au survol */
+        }
+        .icon-box:hover {
+            transform: translateY(-5px); /* Remonte légèrement au survol */
+        }
+        .text-gradient {
+            /* Dégradé pour le texte, créant un aspect moderne */
+            background: linear-gradient(to right, #333, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Ajustements responsifs pour les petits écrans */
+        @media (max-width: 768px) {
+            .section {
+                padding: 2rem 0.5rem;
+            }
+            .text-5xl {
+                font-size: 3rem; /* Ajuste la taille de police pour mobile */
+            }
+            .text-7xl {
+                font-size: 4rem; /* Ajuste la taille de police pour mobile */
+            }
+            .text-4xl {
+                font-size: 2.5rem;
+            }
+            .text-5xl {
+                font-size: 3rem;
+            }
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Point de montage pour l'application React -->
+    <div id="root"></div>
+
+    <!-- Script JavaScript pour l'application React -->
+    <script type="module">
+        // Importe les modules nécessaires de React et ReactDOM
+        import { createRoot } from 'https://esm.sh/react-dom/client';
+        import React from 'https://esm.sh/react';
+        // Importe les icônes de Lucide React
+        import { Plane, Car, User, Clock, CheckCircle, DollarSign, Briefcase, Smile, Award, Zap, Handshake, MapPin } from 'https://esm.sh/lucide-react';
+
+        // Composant principal de l'application React
+        const App = () => {
+            return (
+                <div className="min-h-screen bg-gray-100 font-sans text-gray-800 antialiased">
+
+                    {/* Section 1: Introduction - Page de Titre */}
+                    <section id="intro" className="section bg-white text-gray-900">
+                        <div className="max-w-4xl mx-auto">
+                            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-gradient">
+                                The Passengers x Welcome Pick-up
+                            </h1>
+                            <p className="text-2xl md:text-3xl font-light text-gray-600">
+                                L'Excellence du Transfert à Paris pour vos Clients
+                            </p>
+                            <p className="mt-8 text-lg md:text-xl text-gray-700">
+                                Élevez l'expérience de vos clients dès leur arrivée et jusqu'à leur départ de la capitale.
+                            </p>
+                        </div>
+                    </section>
+
+                    {/* Section 2: Qui sommes-nous ? */}
+                    <section id="who-we-are" className="section bg-gray-900 text-white">
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient">
+                                Qui sommes-nous ?
+                            </h2>
+                            <p className="text-xl md:text-2xl mb-8 font-light">
+                                Votre Partenaire de Confiance en Mobilité à Paris
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left w-full">
+                                {/* Carte pour Acteur Majeur */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4">
+                                    <Car size={48} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Acteur Majeur</h3>
+                                        <p className="text-gray-300">
+                                            The Passengers est un acteur clé du transport de personnes à Paris et en Île-de-France.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Carte pour Flotte & Équipe */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4">
+                                    <User size={48} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Flotte & Équipe</h3>
+                                        <p className="text-gray-300">
+                                            10 véhicules modernes (Berlines & Vans) et une équipe de chauffeurs hautement qualifiés et **ponctuels**.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Carte pour Zone d'Opération */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4 col-span-1 md:col-span-2">
+                                    <MapPin size={48} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Zone d'Opération</h3>
+                                        <p className="text-gray-300">
+                                            Les Aéroports : Paris-Orly (ORY) et Roissy-Charles-de-Gaulle (CDG).<br/>
+                                            Les Gares : L'ensemble des gares parisiennes.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Section 3: Notre Valeur Ajoutée - L'Accueil et le Service */}
+                    <section id="value-added" className="section bg-white text-gray-900">
+                        <div className="max-w-6xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient">
+                                Notre Valeur Ajoutée
+                            </h2>
+                            <p className="text-xl md:text-2xl mb-12 font-light text-gray-600">
+                                Un Service Redéfini pour l'Excellence
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {/* Boîte d'icône : Accueil Personnalisé & Proactif */}
+                                <div className="icon-box">
+                                    <Smile size={40} className="text-gray-600 mb-4" />
+                                    <h3 className="text-xl font-semibold mb-2">Accueil Personnalisé & Proactif</h3>
+                                    <p className="text-gray-600 text-sm">
+                                        Tablette nominative, contact dès l'atterrissage, suivi de vol 24/7.
+                                        <br/><span className="font-bold">1 heure d'attente offerte à l'aéroport.</span>
+                                    </p>
+                                </div>
+                                {/* Boîte d'icône : Chauffeurs Bilingues & Dévoués */}
+                                <div className="icon-box">
+                                    <User size={40} className="text-gray-600 mb-4" />
+                                    <h3 className="text-xl font-semibold mb-2">Chauffeurs Bilingues & Dévoués</h3>
+                                    <p className="text-gray-600 text-sm">
+                                        Français/Anglais, prise en charge des bagages, ambassadeurs locaux.
+                                        <br/><span className="font-bold">Ponctualité garantie.</span>
+                                    </p>
+                                </div>
+                                {/* Boîte d'icône : Véhicules Impeccables & Confort */}
+                                <div className="icon-box">
+                                    <CheckCircle size={40} className="text-gray-600 mb-4" />
+                                    <h3 className="text-xl font-semibold mb-2">Véhicules Impeccables & Confort</h3>
+                                    <p className="text-gray-600 text-sm">
+                                        Propreté exceptionnelle, eau, gel, câbles de charge, confiseries à bord.
+                                    </p>
+                                </div>
+                                {/* Boîte d'icône : Gestion Robuste des Imprévus */}
+                                <div className="icon-box">
+                                    <Zap size={40} className="text-gray-600 mb-4" />
+                                    <h3 className="text-xl font-semibold mb-2">Gestion Robuste des Imprévus</h3>
+                                    <p className="text-gray-600 text-sm">
+                                        Réactivité et efficacité face aux vols déroutés ou changements de dernière minute.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Section 4: Bénéfices pour Welcome Pick-up */}
+                    <section id="benefits" className="section bg-gray-900 text-white">
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gradient">
+                                Les Bénéfices pour Welcome Pick-up
+                            </h2>
+                            <p className="text-xl md:text-2xl mb-12 font-light text-gray-300">
+                                Pourquoi Choisir The Passengers ?
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                                {/* Carte : Fiabilité Inégalée */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4">
+                                    <Award size={40} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Fiabilité Inégalée</h3>
+                                        <p className="text-gray-300">
+                                            Vos clients arriveront à destination en temps et en heure, sans stress.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Carte : Expérience Client Premium */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4">
+                                    <Smile size={40} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Expérience Client Premium</h3>
+                                        <p className="text-gray-300">
+                                            Un service haut de gamme et un accompagnement personnalisé.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Carte : Efficacité Opérationnelle */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4">
+                                    <Briefcase size={40} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Efficacité Opérationnelle</h3>
+                                        <p className="text-gray-300">
+                                            Une gestion optimisée de vos transferts, réduisant votre charge administrative.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Carte : Tarifs Compétitifs */}
+                                <div className="p-6 bg-gray-800 rounded-xl shadow-lg flex items-start space-x-4">
+                                    <DollarSign size={40} className="text-gray-400 flex-shrink-0" />
+                                    <div>
+                                        <h3 className="text-2xl font-semibold mb-2">Tarifs Compétitifs</h3>
+                                        <p className="text-gray-300">
+                                            Une offre de qualité supérieure conçue pour un partenariat mutuellement bénéfique.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Section 5: Appel à l'action */}
+                    <section id="call-to-action" className="section bg-white text-gray-900">
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">
+                                Engageons-nous vers un Partenariat d'Excellence
+                            </h2>
+                            <p className="text-xl md:text-2xl mb-8 font-light text-gray-600">
+                                Nous sommes convaincus que notre savoir-faire représente une opportunité stratégique majeure pour enrichir l'offre de Welcome Pick-up à Paris.
+                            </p>
+                            {/* Bouton de contact par email */}
+                            <button
+                                onClick={() => window.location.href = 'mailto:votre.email@example.com?subject=Partenariat%20The%20Passengers%20x%20Welcome%20Pick-up'}
+                                className="inline-flex items-center px-8 py-4 bg-gray-800 text-white text-xl font-semibold rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                            >
+                                <Handshake size={24} className="mr-3" />
+                                Contactez-nous
+                            </button>
+                            <p className="mt-8 text-gray-500 text-sm">
+                                Nous sommes flexibles et prêts à adapter nos services pour une intégration harmonieuse avec vos opérations.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            );
+        };
+
+        // Code pour le rendu de l'application React dans le DOM
+        // Récupère l'élément div avec l'ID 'root'
+        const container = document.getElementById('root');
+        // Crée une racine React et rend le composant App à l'intérieur
+        const root = createRoot(container);
+        root.render(<App />);
+
+        // Script JavaScript pour les animations basées sur le défilement
+        // Attend que le DOM soit entièrement chargé
+        document.addEventListener('DOMContentLoaded', () => {
+            // Sélectionne toutes les sections avec la classe 'section'
+            const sections = document.querySelectorAll('.section');
+
+            // Options pour l'Intersection Observer
+            const observerOptions = {
+                root: null, // Utilise la fenêtre d'affichage comme élément racine
+                rootMargin: '0px',
+                threshold: 0.2 // Déclenche lorsque 20% de la section est visible
+            };
+
+            // Crée une nouvelle instance de l'Intersection Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                // Parcourt chaque entrée observée
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Si la section est visible, ajoute la classe 'is-visible' pour déclencher l'animation
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        // Optionnel : retire la classe si la section sort de la vue
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe chaque section
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
